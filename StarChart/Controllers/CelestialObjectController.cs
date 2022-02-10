@@ -28,7 +28,7 @@ namespace StarChart.Controllers
             return Ok(celestial);
 
         }
-        [HttpGet("{name: string}")]
+        [HttpGet("{name}")]
         public IActionResult GetByName(string name)
         {
             // Check if the object exists

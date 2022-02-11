@@ -105,10 +105,20 @@ namespace StarChart.Controllers
         }
 
 
-        [HttpDelete]
-        public IActionResult Delete()
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-            return NotFound();
+            if (!_context.CelestialObjects.Any(c => c.Id == id))
+            {
+                return NotFound();
+            }
+
+            _context.CelestialObjects.RemoveRange(_context.CelestialObjects.Where(c => c.Id == id));
+            _context.SaveChanges();
+
+
+            return NoContent();
+
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using StarChart.Data;
+using StarChart.Models;
 
 namespace StarChart.Controllers
 {
@@ -56,6 +57,27 @@ namespace StarChart.Controllers
             }
             return Ok(celestials);
         }
-             
+        
+        [HttpPost]
+        public IActionResult Create([FromBody] CelestialObject celestial)
+        {
+            _context.CelestialObjects.Add(celestial);
+            _context.SaveChanges();
+            return CreatedAtRoute("GetById" ,new {celestial.Id });
+        }
+
+        [HttpPut]
+        public IActionResult Update()
+        {
+            return NotFound();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete()
+        {
+            return NotFound();
+        }
+
+
     }
 }
